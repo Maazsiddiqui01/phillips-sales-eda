@@ -34,7 +34,11 @@ if uploaded_files:
     # Correlation heatmap
     st.write("Correlation Heatmap:")
     fig, ax = plt.subplots(figsize=(10, 6))
-    sns.heatmap(data.corr(), annot=True, cmap="coolwarm", ax=ax)
+    numeric_data = data.select_dtypes(include=["number"])
+    if numeric_data.empty:
+        st.warning("No numeric columns available for correlation analysis.")
+    else:
+        sns.heatmap(numeric_data.corr(), annot=True, cmap="coolwarm", ax=ax)
     st.pyplot(fig)
 
     # Example visualization: Sales trends over time (if date column exists)
