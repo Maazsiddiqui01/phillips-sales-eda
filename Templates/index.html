@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDA Visualizations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <h1 class="text-center mb-4">EDA Visualizations</h1>
+
+        <!-- Dropdown for selecting visualization -->
+        <form method="get" action="/" class="mb-4">
+            <label for="visualization" class="form-label">Select a visualization:</label>
+            <select name="visualization" id="visualization" class="form-select">
+                {% for key, value in visualizations.items() %}
+                    <option value="{{ key }}">{{ value[0] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary mt-3">Show</button>
+        </form>
+
+        <!-- Display the selected visualization -->
+        <h2 class="text-center">{{ title }}</h2>
+        {% if img_src %}
+            <div class="text-center">
+                <img src="{{ img_src }}" alt="{{ title }}" class="img-fluid mt-3">
+            </div>
+        {% else %}
+            <p class="text-center text-danger">No visualization selected.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
